@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class MenuController extends Controller
 {
@@ -20,7 +21,9 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view("management.menuCreate");
+        $categories = Category::all();
+
+        return view("management.menuCreate")->with("categories", $categories);
     }
 
     /**
