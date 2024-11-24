@@ -64,7 +64,14 @@ class TableController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:tables,name,' . $id
+        ]);
+        $table = Table::find($id);
+        $table->name = $request->name;
+        $table->save();
+        session()->flash('status', 'Table updated successfully');
+        return redirect('/management/table');
     }
 
     /**
@@ -72,6 +79,9 @@ class TableController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $table = Table::find($id);
+        $table->delete();
+        session()->flash('status', 'Table deleted successfully');
+        return redirect('/management/table');
     }
 }

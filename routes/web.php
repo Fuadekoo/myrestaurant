@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\CategoryController;
 use App\Http\Controllers\Management\MenuController;
 use App\Http\Controllers\Management\TableController;
+use App\Http\Controllers\Cashier\CashierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,14 @@ Route::resource('/management/category', CategoryController::class);
 Route::resource('/management/menu', MenuController::class);
 
 Route::resource('/management/table', TableController::class);
+
+Route::get('/cashier', function () {
+    return view('cashier.index');
+});
+
+Route::get('/cashier/getTables', [CashierController::class, 'getTables']);
+
+// Route::resource('/cashier', CashierController::class);
 
 
 require __DIR__.'/auth.php';

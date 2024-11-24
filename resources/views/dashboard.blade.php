@@ -17,7 +17,7 @@
                             </li>
                         </a>
 
-                        <a href="/casheir">
+                        <a href="/cashier">
                         <li class="text-center">
                             <img width="50px" src="{{asset('images/cashier.svg')}}" alt="">
                             <h4>Cashier</h4>
