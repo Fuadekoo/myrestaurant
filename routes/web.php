@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\CategoryController;
 use App\Http\Controllers\Management\MenuController;
+use App\Http\Controllers\Management\TableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,8 @@ Route::get('/management', function () {
 Route::resource('/management/category', CategoryController::class);
 
 Route::resource('/management/menu', MenuController::class);
+
+Route::resource('/management/table', TableController::class);
+
 
 require __DIR__.'/auth.php';
