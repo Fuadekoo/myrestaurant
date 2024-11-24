@@ -13,7 +13,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        return view("management.table");
+        $tables = Table::paginate(5);
+        return view("management.table")->with('tables', $tables);
     }
 
     /**
