@@ -6,7 +6,7 @@
                 <!-- Main content goes here -->
                 <div class="col-md-8 justify-center">
                     <i class="fas fa-align-justify"></i>Menu
-                    <a href="/management/menu/create" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>Create Menu</a>
+                    <a href="/management/table/create" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>Create Table</a>
                     <hr class="mb-4 p-1">
                     @if(Session()->has('status'))
                         <div class="alert alert-success">
