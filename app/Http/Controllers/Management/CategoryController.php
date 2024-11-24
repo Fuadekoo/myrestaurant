@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view("management.category");
+        $categories = Category::paginate(5);
+        return view("management.category")->with('categories', $categories);
     }
 
     /**
@@ -36,9 +37,9 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->save();
-        $request->session()->flash('status', 'Category created successfully');
+        session()->flash('status', 'Category created successfully');
         return redirect('/management/category');
-    } 
+    }
 
     /**
      * Display the specified resource.
@@ -53,7 +54,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view("management.categoryEdit")->with('category', $category);
     }
 
     /**
@@ -61,7 +63,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:categories,name,' . $id
+        ]);
+        // Find the category by ID
+    $category = Category::find($id);
+
+    // Check if the category exists
+    if (!$category) {
+        return redirect('/management/category')->withErrors(['Category not found.']);
+    }
+        $category->name = $request->name;
+        $category->save();
+        session()->flash('status', 'Category updated successfully');
+        return redirect('/management/category');
     }
 
     /**
@@ -69,6 +84,11 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        if ($category) {
+            $category->delete();
+        }
+        session()->flash('status', 'Category deleted successfully');
+        return redirect('/management/category');
     }
 }

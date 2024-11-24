@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\CategoryController;
+use App\Http\Controllers\Management\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/management', function () {
     return view('management.index');
 });
+
 Route::resource('/management/category', CategoryController::class);
-// Route::get('/management/category', [CategoryController::class,'index']);
+
+Route::resource('/management/menu', MenuController::class);
 
 require __DIR__.'/auth.php';
