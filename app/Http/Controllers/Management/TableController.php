@@ -55,7 +55,8 @@ class TableController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $table = Table::find($id);
+        return view("management.tableEdit")->with('table', $table);
     }
 
     /**

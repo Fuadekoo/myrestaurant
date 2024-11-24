@@ -26,7 +26,21 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($tables as $table)
+                                <tr>
+                                    <th scope="row">{{$table->id}}</th>
+                                    <td>{{$table->name}}</td>
+                                    <td>{{$table->status}}</td>
+                                    <td><a href="/management/table/{{$table->id}}/edit" class="btn btn-warning">Edit</a></td>
+                                    <td>
+                                        <form action="/management/table/{{$table->id}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" value="Delete" class="btn btn-danger">
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
