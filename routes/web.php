@@ -42,9 +42,9 @@ Route::resource('/management/menu', MenuController::class);
 
 Route::resource('/management/table', TableController::class);
 
-Route::get('/cashier', function () {
-    return view('cashier.index');
-});
+Route::get('/cashier', [CashierController::class, 'index']);
+
+Route::get('/cashier/getMenusByCategory/{category_id}', [CashierController::class, 'getMenusByCategory']);
 
 Route::get('/cashier/getTables', [CashierController::class, 'getTables']);
 
